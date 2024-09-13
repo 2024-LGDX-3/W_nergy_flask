@@ -4,8 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈</title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-    <h1> Flask 테스트 </h1>
+<div class="w_100" style="display: flex; height: 100%; background-image: url('../static/icon/room.png');">
+    <div style="width: 70%; height: 5vh; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 30px;">
+        <div style="width: 15%; color: #FFFFFF;">
+            <div>2023/09/09 MON</div>
+            <div>21:21</div>
+        </div>
+        <div style="width: 15%; display: flex; justify-content: space-between;">
+            <div style="display: flex; align-items: center; color: #FFFFFF;">
+                <img src="../static/icon/temparature.png" alt="temparature">
+                <div>23℃</div>
+            </div>
+            <div style="display: flex; align-items: center; color: #FFFFFF;">
+                <img src="../static/icon/weather.png" alt="weather">
+                <div>55%</div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 30%; height: 100vh; display: flex; background: rgba(4, 11, 50, 0.6);">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div class="fw500_30_35" style="font-weight: 600; line-height: 40px; color: #FFFFFF; margin-bottom: 20px;">
+                <span style="font-weight: 700;">혜람님</span>의 여유도 결과
+            </div>
+            <div style="width: 75%; text-align: center; background: rgba(2, 6, 23, 0.4); color: #FFFFFF; border-radius: 10%; padding: 20px 20px 50px 20px;">
+                <div class="fw500_20_35" style="line-height: 42px; margin-bottom: 30px;"> 9월 20일 금요일 </div>
+                <div style="diaplay: flex; flex-direction: column; margin-bottom: 50px;">
+                    <div style="display: flex; flex-direction: row; justify-content: center;">
+                        <div class="fw500_20_35" style="color: #D8D8D8; margin-right: 20px;">여유도 점수</div>
+                        <div class="fw500_20_35" style="font-weight: 600; color: #F89E9E;">{{data['leisure']}}</div>
+                    </div>
+                    <img src="../static/icon/aff_{{data['aff']}}.png" alt="aff">
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 50px; justify-content: center;">
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
+                        <div class="fw500_18_18" style="margin-bottom: 10px;">집안일 활동</div>
+                        <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
+                            <div class="fw600_30_35" style="color: #393939;">{{ data['laundry'] + data['dish'] + data['vacuum'] }}</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
+                        <div class="fw500_18_18" style="margin-bottom: 10px;">걸음 수</div>
+                        <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
+                            <div class="fw600_30_35" style="color: #393939;">{{ data['steps'] }}</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
+                        <div class="fw500_18_18" style="margin-bottom: 10px;">수면 시간</div>
+                        <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
+                            <div class="fw600_30_35" style="color: #393939;">{{ data['sleep_num'] }}</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
+                        <div class="fw500_18_18" style="margin-bottom: 10px;">수면의 질</div>
+                        <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
+                            <div class="fw600_30_35" style="color: #393939;">72</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
