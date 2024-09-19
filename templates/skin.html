@@ -3,68 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>홈</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <title>skin</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/main.js"></script>
+    <style>
+        .loader {
+            width: 500px; /* GIF 크기 */
+            height: 500px; /* GIF 크기 */
+            background: url('../static/icon/loading.gif') no-repeat center center; /* 로딩 GIF 경로 */
+            background-size: cover;
+            margin: auto;
+            z-index: 10; /* 콘텐츠 위에 표시 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #FFFFFF;
+        }
+        .content {
+            display: none; /* 초기에는 숨김 */
+        }
+    </style>
 </head>
 <body>
-<div class="w_100" style="display: flex; height: 100%; background-image: url('static/icon/room.png');">
-    <div style="width: 70%; height: 5vh; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 30px;">
-        <div style="width: 15%; color: #FFFFFF;">
-            <div>2023/09/09 MON</div>
-            <div>21:31</div>
+<div class="w_100" style="display: flex; height: 100%; background-image: url('../static/icon/room.png');">
+    <div style="width: 70%; display: flex; flex-direction: column;">
+        <div style="height: 10vh; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 30px;">
+        <div style="width: 20%; color: #FFFFFF;">
+            <div class="fw500 f_20_25" id="current_date"></div>
+            <div class="fw500 f_40_60" id="current_time"></div>
         </div>
-        <div style="width: 15%; display: flex; justify-content: space-between;">
+        <div style="width: 20%; display: flex; justify-content: space-between;">
             <div style="display: flex; align-items: center; color: #FFFFFF;">
-                <img src="static/icon/temparature.png" alt="temparature">
-                <div>23℃</div>
+                <img src="../static/icon/temparature.png" alt="temparature" style="margin-right: 5px;">
+                <div class="fw500 f_30_35">23℃</div>
             </div>
             <div style="display: flex; align-items: center; color: #FFFFFF;">
-                <img src="static/icon/weather.png" alt="weather">
-                <div>55%</div>
+                <img src="../static/icon/weather.png" alt="weather" style="margin-right: 5px;">
+                <div class="fw500 f_30_35">55%</div>
+            </div>
+        </div>
+        </div>
+        <div class="center-container">
+            <div class="container">
+<div id="display_image">
+                <img src="../static/images/image.jpg" alt="skin_image">
+</div>
             </div>
         </div>
     </div>
-    <div style="width: 30%; height: 100vh; display: flex; background: rgba(4, 11, 50, 0.6);">
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <div class="fw500_30_35" style="font-weight: 600; line-height: 40px; color: #FFFFFF; margin-bottom: 20px;"> 혜람님의 여유도 결과 </div>
-            <div style="width: 75%; text-align: center; background: rgba(2, 6, 23, 0.4); color: #FFFFFF; border-radius: 10%; padding: 20px 20px 50px 20px;">
-                <div class="fw500_20_35" style="line-height: 42px; margin-bottom: 30px;"> 9월 20일 금요일 </div>
-                <div style="diaplay: flex; flex-direction: column;">
-                    <div style="display: flex; flex-direction: row; justify-content: center;">
-                        <div class="fw500_20_35" style="color: #D8D8D8; margin-right: 20px;">여유도 점수</div>
-                        <div class="fw500_20_35" style="font-weight: 600; color: #F89E9E;">{{data['leisure']}}</div>
+
+    <!-- 피부 분석(1페이지) -->
+    <div id="skin" style="width: 30%; height: 100vh; display: flex; justify-content: center; background: rgba(4, 11, 50, 0.6);">
+        <div class="content" id="content" style="display: none; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
+            <div style="margin-bottom: 30px;">
+                <img src="../static/icon/skin_result.png" alt="skin_result">
+            </div>
+            <div class="fw500 f_30_35" style="line-height: 40px; color: #FFFFFF; margin-bottom: 20px;">
+                <span class="fw700">혜람님</span>의 피부 결과
+            </div>
+            <div style="width: 75%; text-align: center; background: rgba(2, 6, 23, 0.4); color: #FFFFFF; border-radius: 10%; padding: 20px; margin-bottom: 30px;">
+                <div class="fw500 f_20_25" style="margin-bottom: 30px;"> 피부 변화 감지 영역 </div>
+                <div style="display: flex; flex-direction: row; justify-content: space-around;">
+                    <div style="width: calc((100% - 80px) / 4);">
+                        <div style="display: flex; align-items: flex-end; width: 100%; height: 150px; position: relative; overflow: hidden; background: rgba(159, 18, 57, 0.55); border-radius: 15px;">
+                            <div style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%);">74점</div>
+                            <div style="width: 100%; height: 111px; background: rgba(244, 63, 94, 0.75); border-radius: 0 0 15px 15px;"></div>
+                        </div>
+                        <div class="f400 f_20_25" style="white-space: nowrap; margin-top: 10px;">수분</div>
                     </div>
-                    <img src="static/icon/aff_{{data['aff']}}.png" alt="aff">
+                    <div style="width: calc((100% - 80px) / 4);">
+                        <div style="display: flex; align-items: flex-end; width: 100%; height: 150px; position: relative; overflow: hidden; background: rgba(159, 18, 57, 0.55); border-radius: 15px;">
+                            <div style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%);">20점</div>
+                            <div style="width: 100%; height: 30px; background: rgba(244, 63, 94, 0.75); border-radius: 0 0 15px 15px;"></div>
+                        </div>
+                        <div class="f400 f_20_25" style="white-space: nowrap; margin-top: 10px;">모공</div>
+                    </div>
+                    <div style="width: calc((100% - 80px) / 4);">
+                        <div style="display: flex; align-items: flex-end; width: 100%; height: 150px; position: relative; overflow: hidden; background: rgba(159, 18, 57, 0.55); border-radius: 15px;">
+                            <div style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%);">40점</div>
+                            <div style="width: 100%; height: 60px; background: rgba(244, 63, 94, 0.75); border-radius: 0 0 15px 15px;"></div>
+                        </div>
+                        <div class="f400 f_20_25" style="white-space: nowrap; margin-top: 10px;">피부톤</div>
+                    </div>
+                    <div style="width: calc((100% - 80px) / 4);">
+                        <div style="display: flex; align-items: flex-end; width: 100%; height: 150px; position: relative; overflow: hidden; background: rgba(17, 94, 89, 0.55); border-radius: 15px;">
+                            <div style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%);">80점</div>
+                            <div style="width: 100%; height: 120px; background: rgba(20, 184, 166, 0.75); border-radius: 0 0 15px 15px;"></div>
+                        </div>
+                        <div class="f400 f_20_25" style="white-space: nowrap; margin-top: 10px;">피부표면</div>
+                    </div>
+                </div>
+
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center;width: 100%;">
+                <div class="fw600 f_20_25" style="color: #FFFFFF; margin-bottom: 20px;">피부 종합점수</div>
+                <div class="circle">
+                    <div class="inner-circle">
+                      <span class="fw600" style="font-size: 50px;">85</span>
+                    </div>
+                  </div>
+            </div>
+            <div onclick="show_page(2)"
+                style="position: absolute; right: 15px; bottom: 15px; background: #F89E9E; border-radius: 10px; box-shadow: 0px 4px 4px 0px rgba(248, 158, 158, 0.4);">
+                <img src="../static/icon/right_arrow_white.png" alt="right_arrow_white">
+            </div>
+        </div>
+        <div class="loader" id="loader">
+            <div class="loader-text fw600 f_30_35" style="padding-bottom: 250px;">피부 분석 중입니다.</div>
+        </div>
+    </div>
+
+    <!-- 여유도 분석(2페이지) -->
+    <div id="activity" style="width: 30%; height: 100vh; display: none; background: rgba(4, 11, 50, 0.6);">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div class="fw500 f_30_35" style="font-weight: 600; line-height: 40px; color: #FFFFFF; margin-bottom: 20px;">
+                <span class="fw700">혜람님</span>의 여유도 결과
+            </div>
+            <div style="width: 75%; text-align: center; background: rgba(2, 6, 23, 0.4); color: #FFFFFF; border-radius: 10%; padding: 50px 20px;">
+                <div style="diaplay: flex; flex-direction: column; margin-bottom: 50px;">
+                    <div style="display: flex; flex-direction: row; justify-content: center;">
+                        <div class="fw500 f_20_25" style="color: #D8D8D8; margin-right: 20px;">여유도 점수</div>
+                        <div class="fw500 f_20_25" style="font-weight: 600; color: #F89E9E;">{{data['leisure']}}</div>
+                    </div>
+                    <img src="../static/icon/aff_{{data['aff']}}.png" alt="aff">
                 </div>
                 <div style="display: flex; flex-wrap: wrap; gap: 50px; justify-content: center;">
                     <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
-                        <div class="fw500_18_18" style="margin-bottom: 10px;">집안일 활동</div>
+                        <div class="fw500 f_20_25" style="margin-bottom: 10px;">집안일 활동</div>
                         <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
-                            <div class="fw500_30_35" style="color: #393939;">{{ data['laundry'] + data['dish'] + data['vacuum'] }}</div>
+                            <div class="fw600 f_30_35" style="color: #393939;">30</div>
                         </div>
                     </div>
                     <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
-                        <div class="fw500_18_18" style="margin-bottom: 10px;">걸음 수</div>
+                        <div class="fw500 f_20_25" style="margin-bottom: 10px;">걸음 수</div>
                         <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
-                            <div class="fw500_30_35" style="color: #393939;">{{ data['steps'] }}</div>
+                            <div class="fw600 f_30_35" style="color: #393939;">8000</div>
                         </div>
                     </div>
                     <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
-                        <div class="fw500_18_18" style="margin-bottom: 10px;">수면 시간</div>
+                        <div class="fw500 f_20_25" style="margin-bottom: 10px;">수면 시간</div>
                         <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
-                            <div class="fw500_30_35" style="color: #393939;">{{ data['sleep_num'] }}</div>
+                            <div class="fw600 f_30_35" style="color: #393939;">7.5</div>
                         </div>
                     </div>
                     <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
-                        <div class="fw500_18_18" style="margin-bottom: 10px;">수면의 질</div>
+                        <div class="fw500 f_20_25" style="margin-bottom: 10px;">수면의 질</div>
                         <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
-                            <div class="fw500_30_35" style="color: #393939;">72</div>
+                            <div class="fw600 f_30_35" style="color: #393939;">60</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div onclick="show_page(1)"
+            style="position: absolute; bottom: 15px; background: #F89E9E; border-radius: 10px; box-shadow: 0px 4px 4px 0px rgba(248, 158, 158, 0.4); margin-left: 15px;">
+            <img src="../static/icon/right_arrow_white.png" style="rotate: 180deg;" alt="right_arrow_white">
+        </div>
+        <div onclick="show_page(3)"
+            style="position: absolute; right: 15px; bottom: 15px; background: #F89E9E; border-radius: 10px; box-shadow: 0px 4px 4px 0px rgba(248, 158, 158, 0.4);">
+            <img src="../static/icon/right_arrow_white.png" alt="right_arrow_white">
+        </div>
     </div>
+
+    <!-- 다이어리 분석(3페이지) -->
+    <div id="diary" style="width: 30%; height: 100vh; display: none; background: rgba(4, 11, 50, 0.6);">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div class="fw500 f_30_35" style="line-height: 40px; color: #FFFFFF; margin-bottom: 20px;">
+                <span class="fw700">혜람님</span>의 다이어리
+            </div>
+            <div style="width: 80%; text-align: center; background: rgba(2, 6, 23, 0.4); color: #FFFFFF; border-radius: 10%; padding: 50px 30px;">
+                <div style="display: flex; flex-direction: row; margin-bottom: 30px;">
+                    <div style="background: #F89E9E; inline-size: fit-content; border-radius: 20px; padding: 10px;">
+                        # 기쁨
+                    </div>
+                    <div style="background: #F89E9E; inline-size: fit-content; border-radius: 20px; margin: 0 15px; padding: 10px;">
+                        # 집안일 활동량 감소
+                    </div>
+                    <div style="background: #F89E9E; inline-size: fit-content; border-radius: 20px; padding: 10px;">
+                        # 수분지수 상승
+                    </div>
+                </div>
+                <div>
+                    <div class="fw600 f_15_20" style="background: #FFFFFF; border-radius: 10px; border: 2px solid #F89E9E; color: #393939; padding: 15px 0; margin-bottom: 20px;">
+                        삶의 여유도가 많이 증가한 날
+                    </div>
+                    <div class="fw600 f_15_20" style="height: 200px; background: #FFFFFF; border-radius: 10px; border: 2px solid #F89E9E; color: #393939; padding: 15px;">
+                        오늘은 집안일도 하고 산책도 해서 꽤 바쁘게 움직였다.
+                        잠을 뒤척여서 피곤해서 그런지 피부가 전반적으로 건조하고 푸석해 보였다.
+                        수분이 부족한지 당김이 느껴지고, 모공도 살짝 도드라져 신경이 쓰였다.
+                        다행히 피부톤은 나쁘지 않았지만, 주름이 좀 더 눈에 띄는 것 같아 마음 한구석이 찜찜했다.
+                        활동량은 만족스러웠지만, 내일은 피부를 위해 수분 보충에 더 신경 써야겠다.
+                        마음도 몸도 피부도 조금 더 여유를 찾을 수 있길 바라본다.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div onclick="show_page(2)"
+            style="position: absolute; bottom: 15px; background: #F89E9E; border-radius: 10px; box-shadow: 0px 4px 4px 0px rgba(248, 158, 158, 0.4); margin-left: 15px;">
+            <img src="../static/icon/right_arrow_white.png" style="rotate: 180deg;" alt="right_arrow_white">
+        </div>
+    </div>
+
 </div>
+<script>
+    // 페이지 로드 시 로딩 애니메이션을 3초 동안 표시
+    window.onload = function() {
+        const loader = document.getElementById('loader');
+        const content = document.getElementById('content');
+        console.log(loader);
+
+        // 3초 후에 로딩 애니메이션 숨기기 및 콘텐츠 표시
+        setTimeout(() => {
+            loader.style.display = 'none'; // 로딩 스피너 숨기기
+            content.style.display = 'flex'; // 콘텐츠 표시
+        }, 3000); // 3000ms = 3초
+    };
+</script>
 </body>
 </html>

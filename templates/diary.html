@@ -5,63 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈</title>
     <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/main.js"></script>
 </head>
 <body>
 <div class="w_100" style="display: flex; height: 100%; background-image: url('../static/icon/room.png');">
-    <div style="width: 70%; height: 5vh; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 30px;">
-        <div style="width: 15%; color: #FFFFFF;">
-            <div>2023/09/09 MON</div>
-            <div>21:21</div>
+    <div style="width: 70%; display: flex; flex-direction: column;">
+        <div style="height: 10vh; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 30px;">
+        <div style="width: 20%; color: #FFFFFF;">
+            <div class="fw500 f_20_25" id="current_date"></div>
+            <div class="fw500 f_40_60" id="current_time"></div>
         </div>
-        <div style="width: 15%; display: flex; justify-content: space-between;">
+        <div style="width: 20%; display: flex; justify-content: space-between;">
             <div style="display: flex; align-items: center; color: #FFFFFF;">
-                <img src="../static/icon/temparature.png" alt="temparature">
-                <div>23℃</div>
+                <img src="../static/icon/temparature.png" alt="temparature" style="margin-right: 5px;">
+                <div class="fw500 f_30_35">23℃</div>
             </div>
             <div style="display: flex; align-items: center; color: #FFFFFF;">
-                <img src="../static/icon/weather.png" alt="weather">
-                <div>55%</div>
+                <img src="../static/icon/weather.png" alt="weather" style="margin-right: 5px;">
+                <div class="fw500 f_30_35">55%</div>
+            </div>
+        </div>
+        </div>
+        <div class="center-container">
+            <div class="container">
+<div id="display_image">
+                <img src="../static/images/image.jpg" alt="skin_image">
+</div>
             </div>
         </div>
     </div>
     <div style="width: 30%; height: 100vh; display: flex; background: rgba(4, 11, 50, 0.6);">
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <div class="fw500_30_35" style="line-height: 40px; color: #FFFFFF; margin-bottom: 20px;">
-                <span style="font-weight: 700;">혜람님</span>의 다이어리
+            <div class="fw500 f_30_35" style="line-height: 40px; color: #FFFFFF; margin-bottom: 20px;">
+                <span class="fw700">혜람님</span>의 다이어리
             </div>
-            div
-            <div style="width: 75%; text-align: center; background: rgba(2, 6, 23, 0.4); color: #FFFFFF; border-radius: 10%; padding: 20px 20px 50px 20px;">
-                <div class="fw500_20_35" style="line-height: 42px; margin-bottom: 30px;"> 9월 20일 금요일 </div>
-                <div style="diaplay: flex; flex-direction: row; margin-bottom: 50px;">
-                    <div style="background: #F89E9E;"># 기쁨</div>
+            <div style="width: 80%; text-align: center; background: rgba(2, 6, 23, 0.4); color: #FFFFFF; border-radius: 10%; padding: 50px 30px;">
+                <div style="display: flex; flex-direction: row; margin-bottom: 30px;">
+                    <div style="background: #F89E9E; inline-size: fit-content; border-radius: 20px; padding: 10px;">
+                        # 기쁨
+                    </div>
+                    <div style="background: #F89E9E; inline-size: fit-content; border-radius: 20px; margin: 0 15px; padding: 10px;">
+                        # 집안일 활동량 감소
+                    </div>
+                    <div style="background: #F89E9E; inline-size: fit-content; border-radius: 20px; padding: 10px;">
+                        # 수분지수 상승
+                    </div>
                 </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 50px; justify-content: center;">
-                    <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
-                        <div class="fw500_18_18" style="margin-bottom: 10px;">집안일 활동</div>
-                        <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
-                            <div class="fw600_30_35" style="color: #393939;"></div>
-                        </div>
+                <div>
+                    <div class="fw600 f_15_20" style="background: #FFFFFF; border-radius: 10px; border: 2px solid #F89E9E; color: #393939; padding: 15px 0; margin-bottom: 20px;">
+                        삶의 여유도가 많이 증가한 날
                     </div>
-                    <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
-                        <div class="fw500_18_18" style="margin-bottom: 10px;">걸음 수</div>
-                        <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
-                            <div class="fw600_30_35" style="color: #393939;"></div>
-                        </div>
-                    </div>
-                    <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
-                        <div class="fw500_18_18" style="margin-bottom: 10px;">수면 시간</div>
-                        <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
-                            <div class="fw600_30_35" style="color: #393939;"></div>
-                        </div>
-                    </div>
-                    <div style="display: flex; flex-direction: column; align-items: center; width: 150px;">
-                        <div class="fw500_18_18" style="margin-bottom: 10px;">수면의 질</div>
-                        <div style="display: flex; justify-content: center; align-items: center; width: 100px; height: 100px; background: #FFFFFF; border-radius: 50%; border: 2px solid #F89E9E;">
-                            <div class="fw600_30_35" style="color: #393939;">72</div>
-                        </div>
+                    <div class="fw600 f_15_20" style="height: 200px; background: #FFFFFF; border-radius: 10px; border: 2px solid #F89E9E; color: #393939; padding: 15px;">
+                        오늘은 집안일도 하고 산책도 해서 꽤 바쁘게 움직였다.
+                        잠을 뒤척여서 피곤해서 그런지 피부가 전반적으로 건조하고 푸석해 보였다.
+                        수분이 부족한지 당김이 느껴지고, 모공도 살짝 도드라져 신경이 쓰였다.
+                        다행히 피부톤은 나쁘지 않았지만, 주름이 좀 더 눈에 띄는 것 같아 마음 한구석이 찜찜했다.
+                        활동량은 만족스러웠지만, 내일은 피부를 위해 수분 보충에 더 신경 써야겠다.
+                        마음도 몸도 피부도 조금 더 여유를 찾을 수 있길 바라본다.
                     </div>
                 </div>
             </div>
+        </div>
+        <div onclick="location.href='http://127.0.0.1:5000/result/activity'"
+            style="position: absolute; bottom: 15px; background: #F89E9E; border-radius: 10px; box-shadow: 0px 4px 4px 0px rgba(248, 158, 158, 0.4); margin-left: 15px;">
+            <img src="../static/icon/right_arrow_white.png" style="rotate: 180deg;" alt="right_arrow_white">
         </div>
     </div>
 </div>

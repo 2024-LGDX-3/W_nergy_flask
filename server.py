@@ -1,10 +1,20 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request, jsonify
+from PIL import Image
+import os
 import oracledb
+import http.client
+import io
 
 app = Flask(__name__)
 
-@app.route('/result/<result_type>')
+# RapidAPI 설정
+RAPIDAPI_HOST = "skin-analyze-pro.p.rapidapi.com"
+RAPIDAPI_KEY = "a50fd6368dmsh86f6cbea142ed97p17f40djsneb900fa6f6ba"
+
+@app.route('/')
+def main():
+    return render_template('main.html')
+@app.route('/result/<result_type>', methods=['GET', 'POST'])
 def index(result_type):
     if str(result_type) == 'activity':
         activity = {'laundry': 0
@@ -32,11 +42,45 @@ def index(result_type):
         else:
             activity['leisure'] = '매우 나쁨'
             activity['aff'] = 1
-        return render_template('main.html', data=activity)
+        return render_template('activity.html', data=activity)
     elif str(result_type) == 'diary':
         return render_template('diary.html')
     else:
-        return render_template('skin.html')
+        activity = {'laundry': 0
+            , 'dish': 1
+            , 'vacuum': 1
+            , 'sleep_num': 6.88
+            , 'sleep_qual_awake': 0.39
+            , 'sleep_qual_rem': 1.85
+            , 'sleep_qual_core': 2.68
+            , 'sleep_qual_deep': 1.94
+            , 'steps': 12116
+            , 'leisure_index': 0.80}
+        if 0.81 <= activity['leisure_index'] <= 1.0:
+            activity['leisure'] = '매우 좋음'
+            activity['aff'] = 5
+        elif 0.61 <= activity['leisure_index'] <= 0.8:
+            activity['leisure'] = '좋음'
+            activity['aff'] = 4
+        elif 0.41 <= activity['leisure_index'] <= 0.6:
+            activity['leisure'] = '보통'
+            activity['aff'] = 3
+        elif 0.21 <= activity['leisure_index'] <= 0.4:
+            activity['leisure'] = '나쁨'
+            activity['aff'] = 2
+        else:
+            activity['leisure'] = '매우 나쁨'
+            activity['aff'] = 1
+        if request.method == 'POST':
+            path = './static/images/'
+            file = request.files['file']
+
+            # 이미지 저장
+            file_path = os.path.join(path, file.filename)
+            file.save(file_path)
+
+            return render_template('skin.html', data=activity)
+        return render_template('skin.html', data=activity)
 
 
 # Oracle Instant Client 설치 경로 설정 (Thick 모드 활성화)
